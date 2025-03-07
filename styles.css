@@ -1,0 +1,19 @@
+* {
+  box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin: 0;
+  font-size: 40px;
+}
+
+#container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+#calculator {
+  display: flex;
+  flex-direction: column;
+}
