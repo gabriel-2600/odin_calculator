@@ -1,3 +1,9 @@
+let numOne = "";
+let operator = "";
+let numTwo = "";
+let displayValues = "";
+let answer = "";
+
 const operators = {
   "+": (a, b) => a + b,
   "-": (a, b) => a - b,
@@ -5,18 +11,30 @@ const operators = {
   "÷": (a, b) => a / b,
 };
 
-function operate(firstVal, secondVal, sign) {
-  return operators[operator](firstVal, secondVal);
+function clear() {
+  numOne = "";
+  operator = "";
+  numTwo = "";
+  displayValues = "";
+  answer = "";
 }
-
-let numOne = "";
-let operator = "";
-let numTwo = "";
-let displayValues = "";
 
 const displayParagraph = document.querySelector("#display");
 function display(displayValue) {
   displayParagraph.textContent = displayValue;
+}
+
+function operate(firstVal, secondVal, sign) {
+  if (secondVal === 0 && sign === "÷") {
+    alert("You can't divide by 0");
+    clear();
+    return;
+  }
+
+  clear();
+  answer = operators[sign](firstVal, secondVal);
+
+  return answer;
 }
 
 const digitBtns = document.querySelectorAll(".digits");
@@ -48,6 +66,18 @@ operatorBtns.forEach((operatorBtn) => {
       operator = operatorBtn.value;
     } else if (numTwo === "" && numOne !== "") {
       operator = operatorBtn.value;
+    } else if (answer !== "") {
+      numOne = answer;
+      answer = "";
+      operator = operatorBtn.value;
+    } else if (numOne !== "" && numTwo !== "" && operator !== "") {
+      display(operate(Number(numOne), Number(numTwo), operator));
+      numOne = answer;
+      answer = "";
+
+      if (numOne !== "") {
+        operator = operatorBtn.value;
+      }
     }
 
     displayValues = numOne + operator + numTwo;
