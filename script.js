@@ -43,11 +43,15 @@ digitBtns.forEach((digitBtn) => {
     if (operator !== "") {
       if (digitBtn.value === "0" && numTwo === "0") {
         return;
+      } else if (digitBtn.value === "." && numTwo.includes(".")) {
+        return;
       } else {
         numTwo += digitBtn.value;
       }
     } else {
       if (digitBtn.value === "0" && numOne === "0") {
+        return;
+      } else if (digitBtn.value === "." && numOne.includes(".")) {
         return;
       } else {
         answer = "";
@@ -67,10 +71,8 @@ operatorBtns.forEach((operatorBtn) => {
       numOne = answer;
       answer = "";
     } else if (numOne === "") {
-      console.log("no numOne!");
       return;
     } else if (numOne !== "" && numTwo !== "" && operator !== "") {
-      console.log("clicked");
       numOne = operate(Number(numOne), Number(numTwo), operator);
       answer = "";
     }
