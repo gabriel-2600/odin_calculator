@@ -50,6 +50,7 @@ digitBtns.forEach((digitBtn) => {
       if (digitBtn.value === "0" && numOne === "0") {
         return;
       } else {
+        answer = "";
         numOne += digitBtn.value;
       }
     }
@@ -62,24 +63,19 @@ digitBtns.forEach((digitBtn) => {
 const operatorBtns = document.querySelectorAll(".ops");
 operatorBtns.forEach((operatorBtn) => {
   operatorBtn.addEventListener("click", () => {
-    if (operator === "" && numOne !== "") {
-      operator = operatorBtn.value;
-    } else if (numTwo === "" && numOne !== "") {
-      operator = operatorBtn.value;
-    } else if (answer !== "") {
+    if (answer !== "") {
       numOne = answer;
       answer = "";
-      operator = operatorBtn.value;
+    } else if (numOne === "") {
+      console.log("no numOne!");
+      return;
     } else if (numOne !== "" && numTwo !== "" && operator !== "") {
-      display(operate(Number(numOne), Number(numTwo), operator));
-      numOne = answer;
+      console.log("clicked");
+      numOne = operate(Number(numOne), Number(numTwo), operator);
       answer = "";
-
-      if (numOne !== "") {
-        operator = operatorBtn.value;
-      }
     }
 
+    operator = operatorBtn.value;
     displayValues = numOne + operator + numTwo;
     display(displayValues);
   });
@@ -92,4 +88,10 @@ equalBtn.addEventListener("click", () => {
   }
 
   display(operate(Number(numOne), Number(numTwo), operator));
+});
+
+const clearBtn = document.querySelector(".clear-btn");
+clearBtn.addEventListener("click", () => {
+  clear();
+  displayParagraph.textContent = "";
 });
