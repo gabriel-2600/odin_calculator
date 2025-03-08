@@ -81,6 +81,12 @@ operatorBtns.forEach((operatorBtn) => {
     } else if (numOne !== "" && numTwo !== "" && operator !== "") {
       numOne = operate(Number(numOne), Number(numTwo), operator);
       answer = "";
+
+      if (!numOne) {
+        clear();
+        displayParagraph.textContent = "";
+        return;
+      }
     }
 
     operator = operatorBtn.value;
