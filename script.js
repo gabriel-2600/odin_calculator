@@ -33,6 +33,7 @@ function operate(firstVal, secondVal, sign) {
 
   clear();
   answer = operators[sign](firstVal, secondVal);
+  console.log(typeof answer);
 
   return answer;
 }
