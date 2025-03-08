@@ -82,7 +82,7 @@ operatorBtns.forEach((operatorBtn) => {
       numOne = operate(Number(numOne), Number(numTwo), operator);
       answer = "";
 
-      if (!numOne) {
+      if (!numOne && numOne !== 0) {
         clear();
         displayParagraph.textContent = "";
         return;
