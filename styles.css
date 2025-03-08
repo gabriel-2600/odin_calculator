@@ -29,8 +29,10 @@ button {
   height: 100px;
   border: 2px gray solid;
   width: 442px;
+  display: flex;
+  justify-content: flex-end;
+  white-space: nowrap;
   overflow: hidden;
-  text-align: right;
 }
 
 .buttons {

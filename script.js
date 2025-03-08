@@ -33,7 +33,12 @@ function operate(firstVal, secondVal, sign) {
 
   clear();
   answer = operators[sign](firstVal, secondVal);
-  console.log(typeof answer);
+
+  if (!Number.isInteger(answer)) {
+    let stringToNum = Number(answer);
+    answer = Number(stringToNum.toFixed(5));
+    return answer;
+  }
 
   return answer;
 }
